@@ -8,5 +8,8 @@ bundle
 bundle binstubs rspec-core
 rails g rspec:install
 bin/rspec
+rails g modle customer
 
+rake db:migrate
+rake db:test:prepare
 
