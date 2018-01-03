@@ -12,4 +12,6 @@ rails g modle customer
 
 rake db:migrate
 rake db:test:prepare
+bin/rspec spec/models/customer_spec.rb
+
 
