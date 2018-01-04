@@ -4,7 +4,8 @@ descrive 'LOGIN' do
   specify 'USER_LOGIN SUCCESS' do
    #Customer.stub(:authenticate)
    #Customer.stub(:authenticate).and_return(Customer.new)
-    Customer.stub(:authenticate).and_return(FactoryGirl.create(:customer))  
+   #Customer.stub(:authenticate).and_return(FactoryGirl.create(:customer))  
+    Customer.stub(:authenticate).and_return(create(:customer))#spec/spec_helper.rb
     visit root_path
     within('form#new_session') do
       fill_in 'username', with: 'taro'
