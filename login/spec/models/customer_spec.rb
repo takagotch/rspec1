@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Customer do
+describe Customer, 'VALIDATION' do
   let(:customer) { FactoryGirl.build(:customer) }
 
   specify 'valid obj' do
@@ -64,4 +64,12 @@ describe Customer do
   end
 end
 
+describe Customer, '.authenticate' do
+  let(:customer) { create(:customer, username: 'taka', password: 'correct_password')}
+
+  specify 'USERNAME PASS OBJ = CUSTOMER =>' do
+    result = Customer.authenticate(customer.username, 'correct_password')
+    expect(result).to eq(customer)
+  end
+end
 
