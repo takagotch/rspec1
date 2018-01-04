@@ -1,0 +1,14 @@
+<%= form_tag :login, id: 'new_session' do %>
+	<div>
+	  <%= label_tag 'username', 'username' %>
+	  <%= text_field_tag 'username' %>
+	</div>
+	<div>
+		<%= label_tag 'password', 'password' %>
+		<%= password_field_tag 'password' %>
+	</div>
+	<div>
+		<%= submit_tag 'LOGIN' %>
+	</div>
+<% end %>
+
