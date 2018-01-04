@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 descrive 'LOGIN' do
+before { create(:customer, username: 'taka', password: 'correct_password') }
+
   specify 'USER_LOGIN SUCCESS' do
    #Customer.stub(:authenticate)
    #Customer.stub(:authenticate).and_return(Customer.new)
    #Customer.stub(:authenticate).and_return(FactoryGirl.create(:customer))  
-    Customer.stub(:authenticate).and_return(create(:customer))#spec/spec_helper.rb
+   #Customer.stub(:authenticate).and_return(create(:customer))#spec/spec_helper.rb
     visit root_path
     within('form#new_session') do
       fill_in 'username', with: 'taro'
@@ -16,7 +18,7 @@ descrive 'LOGIN' do
   end
 
   specify 'USER_LOGIN FAILD' do
-    Customer.stub(:authenticate)
+   #Customer.stub(:authenticate)
     visit root_path
     within('form#new_session') do
       fill_in 'username', with: 'taka'
