@@ -2,6 +2,9 @@ require 'spec_helper'
 
 descrive 'LOGIN' do
   specify 'USER_LOGIN SUCCESS' do
+   #Customer.stub(:authenticate)
+   #Customer.stub(:authenticate).and_return(Customer.new)
+    Customer.stub(:authenticate).and_return(FactoryGirl.create(:customer))  
     visit root_path
     within('form#new_session') do
       fill_in 'username', with: 'taro'
@@ -12,6 +15,7 @@ descrive 'LOGIN' do
   end
 
   specify 'USER_LOGIN FAILD' do
+    Customer.stub(:authenticate)
     visit root_path
     within('form#new_session') do
       fill_in 'username', with: 'taka'
