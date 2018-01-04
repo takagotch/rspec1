@@ -65,11 +65,44 @@ describe Customer, 'VALIDATION' do
 end
 
 describe Customer, '.authenticate' do
-  let(:customer) { create(:customer, username: 'taka', password: 'correct_password')}
+  let(:customer) { FactoryGirl.create(:customer, username: 'taka', password: 'correct_password')}
 
   specify 'USERNAME PASS OBJ = CUSTOMER =>' do
     result = Customer.authenticate(customer.username, 'correct_password')
     expect(result).to eq(customer)
+  end
+
+  specify 'PASS INVALID NIL' do
+    result = Customer.authentivate(customer.username, 'wrong_password')
+    expect(result).to be_nil
+  end
+
+  specify 'INVALIDE USER NIL' do
+    result = Customer.authenticate('takashi', 'any_string')
+    expect(reslut).to be_nil
+  end
+
+  specify 'PASS no regect' do
+    customer.update_column(:password_digest, nil)
+    result = Customer.authenticate(customer.username, '')
+    expect(result).to be_nil
+  end
+end
+
+describe Customer, 'password=' do
+  let(:customer) { build(:customer, username: 'taka') }
+
+  specify 'password_digest 60string' do
+    customer.password = 'any_string'
+    customer.save!
+    expect(customer.password_digest).not_to be_nil
+    expect(customer.password_digest.size).to eq(60)
+  end
+
+  specify '" " password_digest nil' do
+    customer.password = ''
+    customer.save!
+    expect(customer.password_digest).to be_nil
   end
 end
 
