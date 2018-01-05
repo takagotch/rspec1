@@ -1,0 +1,38 @@
+<tr>
+	<th><%= Member.human_attribute_name(:occupation_name) %></th>
+	<td>
+		<% Member::OCCUPATIONS.each_key do |n| %>
+			<div>
+				<label>
+					<%= form.radio_button :occupation_name, n %>
+					<%= Member::OCCUPATIONS[n] %>
+				</label>
+			</div>
+		<% end %>
+		<div id="occupation-name-form-group">
+			<label>
+				<%= form.text_field :occupation_name %>
+		</label>
+		</div>
+	</td>
+</tr>
+
+<tr>
+<th><%= form.label "job" %></th>
+<td>
+	<% Member.jobs.each_key do |name| %>    #1
+	<% Member.jobs.each do |name, value| %> #2
+	<% Member.jobs.each_key do |name| %>    #3
+		<div>
+			<label> #3
+ 			  <%= form.radio_button :job, name %><%= name %> #3
+			</label> #3
+			<%= form.radio_button :job, name %> #1
+			<%= form.radio_button :job, value%> #2
+			<%= form.label name %>
+		</div>
+	<% end %>
+	<div class="other_job_text"><%= form.text_field :other_job %></div>
+	</td>
+</tr>
+
