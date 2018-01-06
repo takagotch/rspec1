@@ -1,4 +1,4 @@
-App::Application.routes.draw do
-  root to: 'top#index'
+Messages::Application.routes.draw do
+  resources :message
 end
 
